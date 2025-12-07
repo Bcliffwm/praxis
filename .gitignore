@@ -1,3 +1,4 @@
 praxis
 .python-version
 data/
+.env
