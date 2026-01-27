@@ -3,13 +3,17 @@
 This is a Praxis project focused on "Enhancing Document Summarization for Research Portfolio Development with GraphRAG".
 
 ## Purpose
-The project extracts academic research data from OpenAlex API and builds a graph database using Neo4j to enable GraphRAG (Graph Retrieval-Augmented Generation) for document summarization and research portfolio analysis.
+The project implements a research data analysis pipeline that:
+- Extracts academic research data using PyAlex API
+- Stores and queries data in Neo4j graph database
+- Uses AWS Bedrock and Strands agents for AI-powered document summarization
+- Applies GraphRAG (Graph Retrieval-Augmented Generation) techniques for research portfolio development
 
 ## Key Components
-- Data extraction from OpenAlex API for academic works, authors, topics, institutions, publishers, and funders
-- CSV data processing and validation using Pydantic models
-- Neo4j graph database ingestion for relationship modeling
-- Research paper relationship mapping and citation analysis
+- **Data Collection**: Academic works, authors, institutions, topics, publishers, and funders
+- **Graph Database**: Neo4j for storing relationships between research entities
+- **AI Agents**: Strands framework with AWS Bedrock models for summarization
+- **Analysis Environment**: Jupyter notebooks for exploratory data analysis and prototyping
 
 ## Target Use Case
-Academic researchers and institutions looking to analyze research portfolios, discover relationships between works, authors, and topics, and generate enhanced document summaries using graph-based retrieval methods.
+Academic researchers and institutions looking to analyze research portfolios, identify collaboration patterns, and generate summaries of research domains using graph-based AI techniques.

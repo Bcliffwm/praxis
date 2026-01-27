@@ -1,46 +1,49 @@
 # Project Structure
 
 ## Root Directory
-- `.env`: Environment variables (AWS credentials, Neo4j connection details)
-- `.python-version`: Python version specification (3.12.1)
 - `README.md`: Project description and overview
+- `pyproject.toml`: Poetry configuration and dependencies
+- `requirements.txt`: Pip-compatible dependency list
+- `.python-version`: Python version specification (3.12.1)
+- `.env`: Environment variables (AWS credentials, Neo4j config)
 - `.gitignore`: Git ignore patterns
 
 ## Core Notebooks
-- `pyalex.ipynb`: Main data extraction notebook for OpenAlex API
-- `neo4j_aura.ipynb`: Neo4j database ingestion and testing
+- `pyalex.ipynb`: Data extraction from OpenAlex API using PyAlex
+- `neo4j_aura.ipynb`: Neo4j database operations and graph queries
+- `bedrock_strands.ipynb`: AWS Bedrock integration with Strands agents
 
 ## Data Directory (`data/`)
-Contains CSV files generated from OpenAlex API:
+Contains CSV files and processed data:
 - `works.csv`: Academic works/papers data
-- `authors.csv`: Author information and metrics
-- `topics.csv`: Research topics and classifications
+- `authors.csv`: Author information
 - `institutions.csv`: Academic institutions
 - `publishers.csv`: Publishing organizations
-- `funders.csv`: Research funding organizations
+- `topics.csv`: Research topics/subjects
+- `funders.csv`: Funding organizations
 - `work_auth_edges.csv`: Work-author relationships
 - `work_topic_edges.csv`: Work-topic relationships
-- `works_24_filtered.json`: Filtered works data in JSON format
+- `works_24_filtered.json`: Processed works data in JSON format
 
 ## Virtual Environment (`praxis/`)
-Python virtual environment containing:
-- `Scripts/`: Executable scripts and activation files
+Poetry-managed virtual environment containing:
+- `Scripts/`: Executable binaries and activation scripts
 - `Lib/site-packages/`: Installed Python packages
-- `pyvenv.cfg`: Virtual environment configuration
+- `Include/`: Header files
+- `share/`: Shared resources (Jupyter kernels, man pages)
 
 ## Configuration Directories
 - `.kiro/`: Kiro IDE configuration and steering files
 - `.vscode/`: VS Code workspace settings
 - `.git/`: Git repository metadata
 
-## Data Flow
-1. **Extraction**: `pyalex.ipynb` → OpenAlex API → CSV files in `data/`
-2. **Validation**: Pydantic models ensure data quality
-3. **Storage**: `neo4j_aura.ipynb` → CSV data → Neo4j graph database
-4. **Relationships**: Edge files create connections between entities
+## Data Flow Pattern
+1. **Extract**: PyAlex notebook pulls academic data from OpenAlex API
+2. **Transform**: Data processed into CSV format in `data/` directory
+3. **Load**: Neo4j notebook loads CSV data into graph database
+4. **Analyze**: Strands agents query graph data for summarization tasks
 
-## Naming Conventions
-- CSV files use snake_case naming
-- OpenAlex IDs are cleaned (remove 'https://openalex.org/' prefix)
-- Edge files represent relationships between entities
-- JSON files contain filtered/processed data subsets
+## File Naming Conventions
+- Notebooks: Descriptive names indicating primary technology (`pyalex.ipynb`, `neo4j_aura.ipynb`)
+- Data files: Entity type + format (`works.csv`, `authors.csv`)
+- Edge files: Relationship pattern (`work_auth_edges.csv`, `work_topic_edges.csv`)

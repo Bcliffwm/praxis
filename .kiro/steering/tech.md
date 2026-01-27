@@ -1,45 +1,58 @@
 # Technology Stack
 
+## Build System & Package Management
+- **Poetry**: Primary dependency management and build system
+- **Python 3.12.1**: Required Python version
+- **Virtual Environment**: Located in `praxis/` folder
+
 ## Core Technologies
-- **Python 3.12.1**: Primary programming language
-- **Jupyter Notebooks**: Interactive development and data analysis
-- **Neo4j**: Graph database for storing research relationships
-- **PyAlex**: Python client for OpenAlex API data extraction
-- **Pydantic**: Data validation and serialization
+- **PyAlex**: Academic research data extraction from OpenAlex API
+- **Neo4j**: Graph database for storing research entity relationships
+- **AWS Bedrock**: AI model hosting for document summarization
+- **Strands Agents**: AI agent framework for research analysis tasks
+- **Jupyter**: Interactive development and data analysis environment
 
 ## Key Libraries
-- `pyalex`: OpenAlex API client for academic data
-- `neo4j`: Neo4j database driver
-- `pydantic`: Data validation models
-- `csv`: CSV file processing
-- `json`: JSON data handling
-- `itertools`: Data processing utilities
-
-## Environment Setup
-- Virtual environment: `praxis/` directory
-- Python version managed via `.python-version` file
-- Environment variables stored in `.env` file (AWS credentials, Neo4j connection)
-
-## Database Configuration
-- **Neo4j Connection**: Local instance at `bolt://127.0.0.1:7687`
-- **Target Database**: `praxis` (configurable via `TARGET_DB`)
-- **Authentication**: Username/password stored in environment variables
+- `neo4j`: Graph database driver
+- `boto3`: AWS SDK for Bedrock integration
+- `strands-agents`: AI agent framework
+- `pydantic`: Data validation and modeling
+- `python-dotenv`: Environment configuration management
+- `beautifulsoup4`: Web scraping and HTML parsing
+- `httpx`: HTTP client for API requests
 
 ## Common Commands
+
+### Environment Setup
 ```bash
-# Activate virtual environment (Windows)
+# Activate virtual environment
 praxis\Scripts\activate
 
-# Start Jupyter notebook
-jupyter notebook
+# Install dependencies
+poetry install
 
-# Connect to Neo4j (ensure Neo4j is running locally)
-# Default: bolt://127.0.0.1:7687
+# Update dependencies
+poetry update
 ```
 
-## Data Processing Pipeline
-1. Extract data from OpenAlex API using PyAlex
-2. Validate data using Pydantic models
-3. Export to CSV files in `data/` directory
-4. Ingest CSV data into Neo4j graph database
-5. Create relationships between entities (works, authors, topics)
+### Development
+```bash
+# Start Jupyter notebook server
+jupyter notebook
+
+# Run Python scripts
+python script_name.py
+
+# Install new package
+poetry add package_name
+```
+
+### Database
+- Neo4j should be running locally on `bolt://127.0.0.1:7687`
+- Default database: `praxis`
+- Credentials configured in `.env` file
+
+## Configuration
+- Environment variables in `.env` file (AWS credentials, Neo4j connection)
+- PyAlex API requires email configuration: `pyalex.config.email`
+- AWS region: `us-east-1`
