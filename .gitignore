@@ -2,3 +2,7 @@ praxis
 .python-version
 data/
 .env
+
+.hypothesis
+__pycache__
+.vscode
